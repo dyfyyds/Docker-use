@@ -253,6 +253,7 @@ Sno char(8) primary key, Sname varchar(20) not null, Ssex CHAR(1), Sbirthdate da
 create table course(
 Cno char(5) primary key,Cname varchar(20) not null,Ccredit varchar(2),Cpno char(5),foreign key (Cpno) references course(Cno)
 );
+```
 * 选课表
 create table sc(
     Sno char(8),Cno char(5),Grade int(20) not null,Semester char(5),Teachingclass char(8),
