@@ -255,6 +255,7 @@ Cno char(5) primary key,Cname varchar(20) not null,Ccredit varchar(2),Cpno char(
 );
 ```
 * 选课表
+```SQL
 create table sc(
     Sno char(8),Cno char(5),Grade int(20) not null,Semester char(5),Teachingclass char(8),
     primary key(Sno,Cno),
