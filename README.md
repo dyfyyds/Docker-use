@@ -375,3 +375,43 @@ alter table student rename index student_sno_idx to index_stu;
 ```SQL
 drop index sc_sno_cno_idx on sc;
 ```
+# 9. Dockerfile文件   
+## 9.1 定义   
+Dockerfile 是一个文本文件，其中包含了用户可以调用的一系列命令来组合成一个镜像。   
+## 9.2 核心指令   
+|指令|描述|
+|---|---|
+|FROM|基础镜像，所有构建必须以此开始|
+|WORKDIR|设置容器内的当前工作目录（类似 cd）|
+|COPY|将宿主机的文件复制到容器内|
+|RUN|构建镜像时执行的命令（安装软件）|
+|EXPOSE|声明容器运行时监听的端口|
+|ENV|设置环境变量|
+|CMD|容器启动后默认执行的程序（只能有一条）|
+
+## 9.3 编写Dockerfile   
+新建一个文件名称为Dockerfile,不允许修改这是一个规定     
+* 选择一个基础镜像   
+FROM python:3.10-slim
+
+* 设置工作目录：创建文件夹并进入文件夹   
+WORKDIR /jieba
+
+* 复制依赖文件到当前文件夹   
+COPY requirements.txt .
+
+* 安装依赖   
+RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+* 复制脚本文件   
+COPY jieba.py .
+
+* 容器启动时运行测试脚本   
+CMD ["python", "jieba.py"]
+
+## 9.4 运行容器   
+-t:指定镜像名字:标签   
+.:表示在当前目录寻找Dockerfile文件   
+```bash
+docker build -t jieba-test:v1 .
+```
