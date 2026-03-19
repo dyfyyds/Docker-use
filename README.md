@@ -400,18 +400,27 @@ WORKDIR /jieba
 * 复制依赖文件到当前文件夹   
 COPY requirements.txt .
 
+* 更新软件源   
+RUN pip install --upgrade pip
+
 * 安装依赖   
-RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
 
 * 复制脚本文件   
-COPY jieba.py .
+COPY jieba_test.py .
 
 * 容器启动时运行测试脚本   
-CMD ["python", "jieba.py"]
+CMD ["python", "jieba_st.py"]
 
-## 9.4 运行容器   
+## 9.4 创建镜像      
 -t:指定镜像名字:标签   
 .:表示在当前目录寻找Dockerfile文件   
 ```bash
-docker build -t jieba-test:v1 .
+docker build -t jieba-test:v2 .
+```
+
+## 9.5 创建容器   
+可以看前面的指令     
+```shell
+docker run --name my-jieba jieba-test:v2
 ```
