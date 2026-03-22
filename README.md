@@ -196,6 +196,19 @@ docker rmi ubuntu:rolling
 ```
 ![](images/14.png)   
 
+* vscode远程连接docker   
+如果采用常用的ssh的方式，无法访问容器的网络，但是vscode官方提供了一个插件提供远程连接服务-*Dev Containers*   
+![](images/27.png)   
+
+在ssh的页面选择开发容器即可   
+![](images/28.png)   
+
+* 传输文件到docker容器    
+当前文件夹*ThreadPool*传输到名称为*my-ubuntu*容器的/root/code内   
+```shell
+ docker cp .\ThreadPool\ my-ubuntu:/root/code 
+```
+
 
 ## 8. 安装MySQL
 ### 8.1 优势   
